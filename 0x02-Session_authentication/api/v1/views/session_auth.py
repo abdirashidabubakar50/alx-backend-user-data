@@ -6,7 +6,15 @@ from models.user import User
 from api.v1.auth.session_auth import SessionAuth
 import os
 
-""" create an instance of SessionAuth
+"""Session Authentication Views
+This module defines the routes related to session-based authentication.
+
+Routes:
+    POST /auth_session/login: Logs in a user based on email and password,
+                              creates a session, and sets a session cookie.
+
+Handles errors such as missing email, missing password, incorrect email,
+incorrect password, and user not found.
 """
 
 
