@@ -12,9 +12,8 @@ import os
 
 @app_views.route('/auth_session/login', methods=['POST'], strict_slashes=False)
 def auth_session_login():
-    """ 
-    Handles all routes for the Session authentication
-    validates email and password
+    """POST /auth_session/login
+    Handles user login with Session Authentication.
     """
 
     email = request.form.get('email')
