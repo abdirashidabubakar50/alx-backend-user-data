@@ -3,7 +3,6 @@
 from flask import jsonify, request, abort
 from api.v1.views import app_views
 from models.user import User
-from api.v1.auth.session_auth import SessionAuth
 import os
 
 """Session Authentication Views
