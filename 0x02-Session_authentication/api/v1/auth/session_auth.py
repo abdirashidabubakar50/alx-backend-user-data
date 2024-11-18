@@ -50,5 +50,5 @@ class SessionAuth(Auth):
         user_id = self.user_id_for_session_id(session_id)
         if not user_id:
             return None
-        
+
         return User.get(user_id)
