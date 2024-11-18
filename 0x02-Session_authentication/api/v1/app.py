@@ -53,10 +53,8 @@ def before_reqeust_handler():
     if auth is not None:
         request.current_user = auth.current_user(request)
 
-    if auth.authorization_header(request) is None:
-        abort(401)
-
-    if auth.session_cookie(request) is None:
+    if auth.authorization_header(request) and auth.session_cookie(request):
+        return None
         abort(401)
 
 
