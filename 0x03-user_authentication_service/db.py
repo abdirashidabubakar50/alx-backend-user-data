@@ -33,11 +33,9 @@ class DB:
 
     def add_user(self, email: str,  hashed_password: str) -> User:
         """ adds a user to the database
-        
         Args:
             email: the email of the user
             hashed_password: hashed password of the uer
-         
          Returns:
             user: returns the User instance of the added user
         """
@@ -75,7 +73,9 @@ class DB:
         """
         user = self.find_user_by(id=user_id)
 
-        valid_user_attributes = ['email', 'hashed_password', 'session_id', 'reset_token']
+        valid_user_attributes = [
+            'email', 'hashed_password', 'session_id', 'reset_token'
+        ]
 
         for key, value in kwargs.items():
             if key not in valid_user_attributes:
