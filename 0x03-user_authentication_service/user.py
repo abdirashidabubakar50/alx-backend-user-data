@@ -2,7 +2,7 @@
 
 from sqlalchemy import Column, Integer, String
 from sqlalchemy.ext.declarative import declarative_base
-""" This model defines a model named User
+""" This model defines a model User
 """
 Base = declarative_base()
 
