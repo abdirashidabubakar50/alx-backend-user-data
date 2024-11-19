@@ -42,7 +42,7 @@ class Auth:
 
         return new_user
 
-    def valid_login(self, email: str, password: str):
+    def valid_login(self, email: str, password: str) -> bool:
         """ Validate a user login by checking the provided email and password
         """
         try:
