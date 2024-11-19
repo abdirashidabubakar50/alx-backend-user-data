@@ -15,6 +15,7 @@ def home():
     # return a JSON response
     return jsonify({"message": "Bienvenue"})
 
+
 @app.route("/users", methods=["POST"])
 def register_user():
     """ POST '/users'
@@ -26,14 +27,12 @@ def register_user():
 
     if not email or not password:
         return jsonify({"error": "email and password are required"}), 400
-    
+
     try:
         user = AUTH.register_user(email, password)
         return jsonify({"email": user.email, "message": "user created"}), 201
     except ValueError:
         return jsonify({"message": "email already registered"}), 400
-
-
 
 
 if __name__ == "__main__":
