@@ -40,15 +40,19 @@ def login():
     """ POST '/sessions'
     Handles the user login logic
     """
-    email = request.form.get("email")
-    password = request.form.get("pasword")
+    email = request.form.get(email)
+    password = request.form.get(password)
 
     # validate form inputs
-    if not email or not password:
+    if not email or password:
+        abort(401, description="Email and password must be provided")
+
+    # Authenticate user
+    if not Auth.valid_login(email, password):
         abort(401, description="Invalid credentials")
 
-    # create a session for the user
-    session_id = AUTH.create_session(email)
+    # create session for the user
+    session_id = AUTH.create_session(email, password)
     response = make_response(jsonify({"email": email, "message": "logged in"}))
     response.set_cookie("session_id", session_id)
 
