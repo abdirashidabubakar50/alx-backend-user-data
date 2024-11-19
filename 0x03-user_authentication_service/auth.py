@@ -31,7 +31,7 @@ class Auth:
         salt = bcrypt.gensalt()
 
         # Hash the password using the salt
-        hashed_password = bcrypt.hashpw(password_bytes,salt)
+        hashed_password = bcrypt.hashpw(password_bytes, salt)
 
         return hashed_password
 
@@ -41,13 +41,13 @@ class Auth:
         Args:
             email (str): The user's email address
             password (str): THe user's plain-text password
-        
+
         Returns:
             User: The newly created user object
-        
+
         Raises:
             ValueError: if a user already exists with given email
-        """ 
+        """
 
         try:
             existing_user = self._db.find_user_by(email=email)
@@ -74,6 +74,7 @@ class Auth:
                 return False
         except Exception:
             return False
+
 
 def _generate_uuid() -> str:
     """ Generate a new UUID and return its string representaion
