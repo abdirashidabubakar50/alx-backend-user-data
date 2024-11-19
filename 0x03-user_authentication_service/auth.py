@@ -15,25 +15,6 @@ class Auth:
     def __init__(self):
         self._db = DB()
 
-    def _hash_password(self, password: str) -> bytes:
-        """ Hashes a password with bcrypt using a generated salt.
-        Args:
-            password (str): The password string to has
-
-        Returns:
-            bytes: The salted hash of the password
-        """
-
-        # ensure the password is in bytes
-        password_bytes = password.encode('utf-8')
-
-        # Generate a salt
-        salt = bcrypt.gensalt()
-
-        # Hash the password using the salt
-        hashed_password = bcrypt.hashpw(password_bytes, salt)
-
-        return hashed_password
 
     def register_user(self, email: str, password: str) -> User:
         """ Registers a new user with the provided email and password
@@ -56,7 +37,7 @@ class Auth:
         except NoResultFound:
             pass
 
-        hashed_password = self._hash_password(password)
+        hashed_password = _hash_password(password)
 
         new_user = self._db.add_user(email, hashed_password)
 
@@ -74,6 +55,26 @@ class Auth:
                 return False
         except Exception:
             return False
+
+def _hash_password(password: str) -> bytes:
+        """ Hashes a password with bcrypt using a generated salt.
+        Args:
+            password (str): The password string to has
+
+        Returns:
+            bytes: The salted hash of the password
+        """
+
+        # ensure the password is in bytes
+        password_bytes = password.encode('utf-8')
+
+        # Generate a salt
+        salt = bcrypt.gensalt()
+
+        # Hash the password using the salt
+        hashed_password = bcrypt.hashpw(password_bytes, salt)
+
+        return hashed_password
 
 
 def _generate_uuid() -> str:
