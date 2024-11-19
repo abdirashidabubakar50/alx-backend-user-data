@@ -17,7 +17,7 @@ def home():
 
 
 @app.route("/users", methods=["POST"])
-def register_user():
+def users():
     """ POST '/users'
      Handles the  user registration logic
     """
@@ -30,7 +30,7 @@ def register_user():
 
     try:
         user = AUTH.register_user(email, password)
-        return jsonify({"email": user.email, "message": "user created"}), 201
+        return jsonify({"email": user.email, "message": "user created"}), 200
     except ValueError:
         return jsonify({"message": "email already registered"}), 400
 
