@@ -9,13 +9,15 @@ AUTH = Auth()
 # Define the route for the home page
 @app.route("/", methods=["GET"])
 def home():
-    """ route for homepage"""
+    """ GET '/'
+    route for homepage"""
     # return a JSON response
     return jsonify({"message": "Bienvenue"})
 
 @app.route("/users", methods=["POST"])
 def register_user():
-    """ Handles the  user registration logic
+    """ POST '/users'
+     Handles the  user registration logic
     """
     # get the email and password from form data
     email = request.form.get("email")
