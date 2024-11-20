@@ -1,5 +1,5 @@
 #!/usr/bin/env python3
-from flask import Flask, jsonify, request, abort,  make_response
+from flask import Flask, jsonify, request, abort,  make_response, redirect
 from auth import Auth
 
 # initialize the Flask app
@@ -57,6 +57,27 @@ def login():
     response.set_cookie("session_id", session_id)
 
     return response
+
+
+@app.route("/sessions", methods=['DELETE'])
+def logout():
+    """ Handles the DELETE /sessions route to logout a user
+
+    if the session ID exists, destroy the session and redirect to GET /.
+    Otherwise, respond with 403 HTTP status
+    """
+    session_id = request.cookies.get("session_id")
+
+    if not session_id:
+        abort(403)
+
+    user = Auth.get_user_from_session_id(session_id)
+
+    if not user:
+        abort(403)
+
+    Auth.destroy_session(user.id)
+    return redirect('/')
 
 
 if __name__ == "__main__":
