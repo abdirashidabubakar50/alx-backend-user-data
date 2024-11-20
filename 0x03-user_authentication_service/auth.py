@@ -95,6 +95,12 @@ class Auth:
 
     def get_reset_password_token(self, email: str) -> str:
         """ updates the user's reset_token database field
+
+        Args:
+            email (str): the user's email
+        
+        Returns:
+            reset_token(str) : user's new reset_token
         """
         try:
             user = self._db.find_user_by(email=email)
