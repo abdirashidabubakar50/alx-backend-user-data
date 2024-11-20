@@ -98,7 +98,7 @@ class Auth:
 
         Args:
             email (str): the user's email
-        
+
         Returns:
             reset_token(str) : user's new reset_token
         """
