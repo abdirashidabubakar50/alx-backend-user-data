@@ -111,7 +111,7 @@ class Auth:
         if user:
             reset_token = self._generate_uuid()
             self._db.update_user(user.id, reset_token=reset_token)
-            return reset_token
+        return reset_token
 
 
 def _hash_password(password: str) -> bytes:
