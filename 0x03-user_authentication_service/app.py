@@ -130,7 +130,7 @@ def update_password():
     new_password = request.form.get("new_password")
 
     if not email or not reset_token or not new_password:
-        abort(400, description='Missing emai, reset_token or new_password')
+        abort(403, description='Missing email, reset_token or new_password')
 
     try:
         AUTH.update_password(reset_token, new_password)
