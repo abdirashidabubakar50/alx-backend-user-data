@@ -110,7 +110,7 @@ def get_reset_password_token():
         reset_token = AUTH.get_reset_password_token(email)
         return jsonify({"email": email, "reset_token": reset_token}), 200
     except ValueError:
-        abort(402, description="email not registered")
+        abort(403, description="email not registered")
 
 
 @app.route('/reset_password', methods=['PUT'])
