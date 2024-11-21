@@ -129,12 +129,12 @@ def update_password():
     new_password = request.form.get("new_password")
     reset_token = request.form.get("reset_token")
 
-    if not email or not resest_token or not new_password:
+    if not email or not reset_token or not new_password:
         abort(400, description='Missing emai, reset_token or new_password')
 
     try:
         AUTH.update_password(reset_token, new_password)
-        return jsonify({"email": email, "message": "Password update"}), 200
+        return jsonify({"email": email, "message": "Password updated"}), 200
     except ValueError:
         abort(403, description='Invlaid resest token')
 
