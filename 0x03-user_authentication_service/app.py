@@ -82,6 +82,8 @@ def logout():
 
 @app.route('/profile', methods=['GET'])
 def profile():
+    """ Handles the GET /profile route
+    """
     session_id = request.cookies.get("session_id")
 
     if not session_id:
@@ -97,7 +99,7 @@ def profile():
 
 @app.route('/reset_password', methods=['POST'])
 def get_reset_password_token():
-    """ Handles password reset request
+    """ Handles password reset request route POST /reset_password
     """
     email = request.form.get('email')
 
