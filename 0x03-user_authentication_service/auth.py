@@ -100,17 +100,18 @@ class Auth:
             email (str): the user's email
 
         Returns:
-            reset_token(str) : user's new reset_token
+            str : user's new reset_token
         """
         try:
             user = self._db.find_user_by(email=email)
 
-            if user:
-                reset_token = self._generate_uuid()
-                self._db.update_user(user.id, reset_token=reset_token)
-                return reset_token
         except NoResultFound:
             raise ValueError("user does not exist")
+
+        if user:
+            reset_token = self._generate_uuid()
+            self._db.update_user(user.id, reset_token=reset_token)
+            return reset_token
 
 
 def _hash_password(password: str) -> bytes:
