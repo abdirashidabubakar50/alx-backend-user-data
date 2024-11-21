@@ -136,7 +136,7 @@ def update_password():
         AUTH.update_password(reset_token, new_password)
         return jsonify({"email": email, "message": "Password updated"}), 200
     except ValueError:
-        abort(403, description='Invlaid resest token')
+        abort(403, description='Invlaid reset token')
 
 
 if __name__ == "__main__":
