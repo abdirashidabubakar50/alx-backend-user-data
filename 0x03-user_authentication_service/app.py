@@ -113,5 +113,31 @@ def get_reset_password_token():
         abort(402, description="email not registered")
 
 
+@app.route('/reset_password', methods=['PUT'])
+def update_password():
+    """ Handles password reset requests.
+
+    Request form data:
+     - email : The user's email address
+     - reset_token: The reset token for password reset_token
+     - new_password: the new password to reset
+
+    Returns:
+        - 200 HTTP response iwth a success message if password updated
+        = 403 HTTP responce if the reset token is invalid or any other error"""
+    email = request.form.get("email")
+    new_password = request.form.get("new_password")
+    reset_token = request.form.get("reset_token")
+
+    if not email or not resest_token or not new_password:
+        abort(400, description='Missing emai, reset_token or new_password')
+
+    try:
+        AUTH.update_password(reset_token, new_password)
+        return jsonify({"email": email, "message": "Password update"}), 200
+    except ValueError:
+        abort(403, description='Invlaid resest token')
+
+
 if __name__ == "__main__":
     app.run(host="0.0.0.0", port=5000)
