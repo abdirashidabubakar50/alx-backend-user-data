@@ -126,8 +126,8 @@ def update_password():
         - 200 HTTP response iwth a success message if password updated
         = 403 HTTP responce if the reset token is invalid or any other error"""
     email = request.form.get("email")
-    new_password = request.form.get("new_password")
     reset_token = request.form.get("reset_token")
+    new_password = request.form.get("new_password")
 
     if not email or not reset_token or not new_password:
         abort(400, description='Missing emai, reset_token or new_password')
