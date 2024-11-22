@@ -15,7 +15,6 @@ from models.user import User
 import os
 
 
-
 @app_views.route('/auth_session/login', methods=['POST'], strict_slashes=False)
 def auth_session_login():
     """POST /auth_session/login
