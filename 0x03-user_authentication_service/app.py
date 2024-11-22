@@ -1,4 +1,11 @@
 #!/usr/bin/env python3
+"""
+app.py
+
+This module implements a user authentication service using Flask.
+It includes routes for user registration, login, and session management.
+"""
+
 from flask import Flask, jsonify, request, abort,  make_response, redirect
 from auth import Auth
 
