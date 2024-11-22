@@ -7,7 +7,7 @@ returns log message obfuscated
 
 
 def filter_datum(fields: List[str], redaction: str, message: str,
-                 seperator: str):
+                 seperator: str) -> str:
     """
     Returns the log message wiath specified fields obfuscated
 
