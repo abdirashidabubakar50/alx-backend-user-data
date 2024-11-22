@@ -1,10 +1,4 @@
 #!/usr/bin/env python3
-
-from flask import jsonify, request, abort
-from api.v1.views import app_views
-from models.user import User
-import os
-
 """Session Authentication Views
 This module defines the routes related to session-based authentication.
 
@@ -15,6 +9,11 @@ Routes:
 Handles errors such as missing email, missing password, incorrect email,
 incorrect password, and user not found.
 """
+from flask import jsonify, request, abort
+from api.v1.views import app_views
+from models.user import User
+import os
+
 
 
 @app_views.route('/auth_session/login', methods=['POST'], strict_slashes=False)
