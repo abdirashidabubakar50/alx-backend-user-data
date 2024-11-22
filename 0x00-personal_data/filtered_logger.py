@@ -1,9 +1,10 @@
 #!/usr/bin/env python3
-import re
-from typing import List
-""" module that defins the fucntion filter_dataum -
+"""
+Module that defins the fucntion filter_dataum -
 returns log message obfuscated
 """
+import re
+from typing import List
 
 
 def filter_datum(fields: List[str], redaction: str, message: str,
